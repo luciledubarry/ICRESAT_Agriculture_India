@@ -1,0 +1,512 @@
+filter(rank == 1) |>
+count(CROP, name = "nb_villages")
+ggplot(top1_cultures, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+labs(
+x = "",
+y = "Number of villages",
+title = "   First most common crop by village"
+) +
+theme_minimal() +
+theme(
+axis.text = element_text(size = 12),
+plot.title = element_text(size = 16)
+)
+top1_cultures <- main_crop_village |>
+filter(rank == 1) |>
+count(CROP, name = "nb_villages")
+ggplot(top1_cultures, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+labs(
+x = "",
+y = "Number of villages",
+title = "   First most common crop by village"
+) +
+theme_minimal() +
+theme(
+axis.text = element_text(size = 12),
+plot.title = element_text(size = 16),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+top2_cultures <- main_crop_village |>
+filter(rank == 2) |>
+count(CROP, name = "nb_villages")
+ggplot(top2_cultures, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+labs(
+x = "",
+y = "Number of villages",
+title = "   Second most common crop by village"
+) +
+theme_minimal() +
+theme(
+axis.text = element_text(size = 12),
+plot.title = element_text(size = 16),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+View(top1_cultures)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures)
+ggplot(top_crops, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = "2 most common crops by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures)
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = "2 most common crops by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold")
+)
+top1_cultures <- main_crop_village |>
+filter(rank == 1) |>
+count(CROP, name = "nb_villages") |>
+mutate(Position = "1st crop")
+plot_first_crop <- ggplot(top1_cultures, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+labs(
+x = "",
+y = "Number of villages",
+title = "   First most common crop by village"
+) +
+theme_minimal() +
+theme(
+axis.text = element_text(size = 12),
+plot.title = element_text(size = 16),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+plot_first_crop
+top2_cultures <- main_crop_village |>
+filter(rank == 2) |>
+count(CROP, name = "nb_villages") |>
+mutate(Position = "2nd crop")
+plot_second_crop <- ggplot(top2_cultures, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+labs(
+x = "",
+y = "Number of villages",
+title = "   Second most common crop by village"
+) +
+theme_minimal() +
+theme(
+axis.text = element_text(size = 12),
+plot.title = element_text(size = 16),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+plot_second_crop
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures)
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = "2 most common crops by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures)
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = "Most common crops cultivated by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures)
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = " Most common crops cultivated by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures)
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = " Most common crops cultivated by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold"),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures)
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = " Most common crops cultivated by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 12, face = "bold"),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures)
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = " Most common crops cultivated by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold"),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures) |>
+group_by(Position) |>
+slice_max(nb_villages, n = 5, with_ties = FALSE) |>
+ungroup()
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = " Most common crops cultivated by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold"),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures) |>
+group_by(Position) |>
+slice_max(nb_villages, n = 10, with_ties = FALSE) |>
+ungroup()
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = " Most common crops cultivated by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold"),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures) |>
+group_by(Position) |>
+slice_max(nb_villages, n = 10, with_ties = FALSE) |>
+ungroup()
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "fixed") +
+labs(
+x = "",
+y = "Number of villages",
+title = " Most common crops cultivated by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold"),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures) |>
+group_by(Position) |>
+slice_max(nb_villages, n = 10, with_ties = FALSE) |>
+ungroup()
+ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = " Most common crops cultivated by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold"),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+top_crops_villages <- bind_rows(top1_cultures, top2_cultures) |>
+group_by(Position) |>
+slice_max(nb_villages, n = 10, with_ties = FALSE) |>
+ungroup()
+plot_top_crop <- ggplot(top_crops_villages, aes(x = reorder(CROP, nb_villages), y = nb_villages)) +
+geom_col(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+coord_flip() +
+facet_wrap(~ Position, scales = "free_y") +
+labs(
+x = "",
+y = "Number of villages",
+title = " Most common crops cultivated by village"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+strip.text = element_text(size = 14, face = "bold"),
+axis.title.x = element_text(size = 12, color = "grey20")
+)
+plot_top_crop
+ggsave("figures/Top_crop_village.png", plot = plot_top_crop, width = 8, height = 6, dpi = 300)
+View(n_menages_region)
+View(n_menages_region)
+View(n_plots_region)
+distinct_hh <- Cultivation_expand |>
+distinct(VDS_ID, VILLAGE, CROP)
+View(distinct_hh)
+View(top_crops_villages)
+View(top1_cultures)
+View(main_crop_village)
+distinct_hh <- Cultivation_expand |>
+distinct(VDS_ID, VILLAGE, CROP) |>
+left_join(main_crop_village |> select(VILLAGE, CROP rank),
+distinct_hh <- Cultivation_expand |>
+distinct(VDS_ID, VILLAGE, CROP) |>
+left_join(main_crop_village |> select(VILLAGE, CROP, rank),
+by = c("VILLAGE", "CROP"))
+View(distinct_hh)
+distinct_hh <- Cultivation_expand |>
+distinct(VDS_ID, VILLAGE, CROP) |>
+left_join(main_crop_village |> select(VILLAGE, CROP, rank),
+by = c("VILLAGE", "CROP")) |>
+distinct(VDS_ID, VILLAGE) |>
+count(VILLAGE, name = "total_hh")
+distinct_hh <- Cultivation_expand |>
+distinct(VDS_ID, VILLAGE, CROP) |>
+left_join(main_crop_village |> select(VILLAGE, CROP, rank),
+by = c("VILLAGE", "CROP"))
+total_hh_village <- distinct_hh |>
+distinct(VDS_ID, VILLAGE) |>
+count(VILLAGE, name = "total_hh")
+top1_hh_village <- distinct_hh |>
+filter(rank == 1) |>
+distinct(VDS_ID, VILLAGE) |>
+count(VILLAGE, name = "top1_hh")
+prop_top1_hh <- total_hh_village |>
+left_join(top1_hh_village, by = "VILLAGE") |>
+mutate(
+top1_hh = replace_na(top1_hh, 0),
+proportion = top1_hh / total_hh
+)
+View(prop_top1_hh)
+total_hh_village <- distinct_hh |>
+distinct(VDS_ID, VILLAGE) |>
+count(VILLAGE, name = "total_hh")
+top1_hh_village <- Cultivation_expand |>
+distinct(VDS_ID, VILLAGE, CROP) |>
+left_join(main_crop_village |> select(VILLAGE, CROP, rank),
+by = c("VILLAGE", "CROP")) |>
+filter(rank == 1) |>
+distinct(VDS_ID, VILLAGE) |>
+count(VILLAGE, name = "top1_hh")
+prop_top1_hh <- total_hh_village |>
+left_join(top1_hh_village, by = "VILLAGE") |>
+mutate(
+top1_hh = replace_na(top1_hh, 0),
+proportion = top1_hh / total_hh
+)
+ggplot(prop_top1_hh, aes(x = proportion)) +
+geom_density(fill = "orchid3", color = "orchid4", alpha = 0.7) +
+labs(
+title = "Distribution de la proportion de ménages cultivant la culture principale dans chaque village",
+x = "Proportion de ménages (culture dominante)",
+y = "Densité"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+axis.title = element_text(size = 12)
+)
+ggplot(prop_top1_hh, aes(x = proportion)) +
+geom_density(fill = "steelblue2", color = "royalblue4", alpha = 0.6) +
+labs(
+title = "Distribution de la proportion de ménages cultivant la culture principale dans chaque village",
+x = "Proportion de ménages (culture dominante)",
+y = "Densité"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+axis.title = element_text(size = 12)
+)
+prop_hh_per_rank <- distinct_hh |>
+filter(rank %in% c(1, 2)) |>
+group_by(VILLAGE, rank) |>
+summarise(nb_hh = n(), .groups = "drop") |>
+group_by(VILLAGE) |>
+mutate(proportion = nb_hh / sum(nb_hh)) |>
+ungroup()
+ggplot(prop_hh_per_rank, aes(x = proportion, fill = factor(rank), color = factor(rank))) +
+geom_density(alpha = 0.5) +
+labs(
+title = "Distribution des proportions de ménages cultivant\nles cultures dominantes (rang 1 et rang 2)",
+x = "Proportion de ménages par village",
+y = "Densité",
+fill = "Rang de la culture",
+color = "Rang de la culture"
+) +
+scale_fill_manual(values = c("orchid3", "skyblue3")) +
+scale_color_manual(values = c("orchid4", "skyblue4")) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+axis.title = element_text(size = 12),
+legend.title = element_text(size = 12),
+legend.text = element_text(size = 11)
+)
+prop_hh_per_rank <- distinct_hh |>
+filter(rank %in% c(1, 2)) |>
+group_by(VILLAGE, rank) |>
+summarise(nb_hh = n(), .groups = "drop") |>
+group_by(VILLAGE) |>
+mutate(proportion = nb_hh / sum(nb_hh)) |>
+ungroup()
+prop_main_crop <- ggplot(prop_hh_per_rank, aes(x = proportion, fill = factor(rank), color = factor(rank))) +
+geom_density(alpha = 0.5) +
+labs(
+title = "Distribution of households shares growing dominant crops (rank 1 & 2)",
+x = "Share of households growing the crop per village",
+y = "Density",
+fill = "Crop rank",
+color = "Crop rank"
+) +
+scale_fill_manual(values = c("orchid3", "skyblue3")) +
+scale_color_manual(values = c("orchid4", "skyblue4")) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+axis.title = element_text(size = 12),
+legend.title = element_text(size = 12),
+legend.text = element_text(size = 11)
+)
+prop_main_crop
+prop_hh_per_rank <- distinct_hh |>
+filter(rank %in% c(1, 2)) |>
+group_by(VILLAGE, rank) |>
+summarise(nb_hh = n(), .groups = "drop") |>
+group_by(VILLAGE) |>
+mutate(proportion = nb_hh / sum(nb_hh)) |>
+ungroup()
+prop_main_crop <- ggplot(prop_hh_per_rank, aes(x = proportion, fill = factor(rank), color = factor(rank))) +
+geom_density(alpha = 0.5) +
+labs(
+title = "Distribution of households shares growing dominant crops (rank 1 & 2)",
+x = "Share of households per village",
+y = "Density",
+fill = "Crop rank",
+color = "Crop rank"
+) +
+scale_fill_manual(values = c("orchid3", "skyblue3")) +
+scale_color_manual(values = c("orchid4", "skyblue4")) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+axis.title = element_text(size = 12),
+legend.title = element_text(size = 12),
+legend.text = element_text(size = 11)
+)
+prop_main_crop
+prop_hh_per_rank <- distinct_hh |>
+filter(rank %in% c(1, 2)) |>
+group_by(VILLAGE, rank) |>
+summarise(nb_hh = n(), .groups = "drop") |>
+group_by(VILLAGE) |>
+mutate(proportion = nb_hh / sum(nb_hh)) |>
+ungroup()
+prop_main_crop <- ggplot(prop_hh_per_rank, aes(x = proportion, fill = factor(rank), color = factor(rank))) +
+geom_density(alpha = 0.5) +
+labs(
+title = "Distribution of households shares growing dominant crops (rank 1 & 2)",
+x = "Share of households per village",
+y = "Density",
+fill = "Crop rank",
+color = "Crop rank"
+) +
+scale_fill_manual(values = c("orchid3", "skyblue3")) +
+scale_color_manual(values = c("orchid4", "skyblue4")) +
+theme_minimal() +
+theme(
+plot.title = element_text(size = 16),
+axis.text = element_text(size = 12),
+axis.title = element_text(size = 12, color = "grey20"),
+legend.title = element_text(size = 12),
+legend.text = element_text(size = 11)
+)
+prop_main_crop
+ggsave("figures/Proportion_main_crops.png", plot = prop_main_crop, width = 8, height = 6, dpi = 300)
