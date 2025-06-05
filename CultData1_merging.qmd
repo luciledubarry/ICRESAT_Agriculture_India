@@ -154,7 +154,7 @@ CultInput_2014 <- CultInput_2014 |>
 
 CultOutput_2014 <- CultOutput_2014 |>
   filter(!is.na(VDS_ID)) |>
-  select(-RENT_VAL, -OP_MAIN_PROD_UNIT, -OP_MAIN_PROD_QTY, -OP_MAIN_PROD_RATE, -OP_BY_PROD_UNIT, -OP_BY_PROD_QTY, -OP_BY_PROD_RATE, -OP_OT_PROD_UNIT, -OP_OT_PROD_QTY, -OP_OT_PROD_RATE, -REMARKS)
+  select(-RENT_VAL, -OP_MAIN_PROD_RATE, -OP_BY_PROD_UNIT, -OP_BY_PROD_QTY, -OP_BY_PROD_RATE, -OP_OT_PROD_UNIT, -OP_OT_PROD_QTY, -OP_OT_PROD_RATE, -REMARKS)
 
 PlotList_2014 <- PlotList_2014 |>
   filter(!is.na(VDS_ID)) |>
@@ -263,12 +263,12 @@ CultOutput_2014 <- CultOutput_2014 |> distinct()
 ```{r Modifier les variables et enlever les doublons de CultOutput}
 # Pivoter les variables CROP, PRCT_AREA, VAR_NAME et VAR_TYPE en colonne
 CultOutput_2014 <- CultOutput_2014 |>
-  group_by(SUR_YEAR, VDS_ID, PLOT_NAME, PLOT_CODE, SEASON, PLOT_AREA, OW_STAT, IRRI_AREA, RENT_FOR) |>
+  group_by(SUR_YEAR, VDS_ID, PLOT_NAME, PLOT_CODE, SEASON, PLOT_AREA, OW_STAT, IRRI_AREA, RENT_FOR, OP_MAIN_PROD_UNIT, OP_MAIN_PROD_QTY) |>
   mutate(crop_id = row_number()) |>
   ungroup() |>
   
   pivot_wider(
-    id_cols = c(VDS_ID, PLOT_CODE, PLOT_NAME, PLOT_AREA, SUR_YEAR, IRRI_AREA, SEASON, RENT_FOR, OW_STAT),
+    id_cols = c(VDS_ID, PLOT_CODE, PLOT_NAME, PLOT_AREA, SUR_YEAR, IRRI_AREA, SEASON, RENT_FOR, OW_STAT, OP_MAIN_PROD_UNIT, OP_MAIN_PROD_QTY),
     names_from = crop_id,
     values_from = c(CROP, PRCT_AREA, VAR_NAME, VAR_TYPE),
     names_glue = "{.value}_{crop_id}"
@@ -385,6 +385,7 @@ sum(is.na(PlotList_2014$SEASON))
 sum(is.na(CultInput_2014$SEASON))
 sum(is.na(CultOutput_2014$SEASON))
 ```
+
 ## Correspondance des ID dans chaque base
 
 ```{r Correspondance CultInput -> PlotList}
@@ -811,7 +812,7 @@ Cultivation_2014 <- CultInput_2014 |>
 # D'abord joindre avec CultOutput
 Cultivation_2014 <- Cultivation_2014 |>
   left_join(
-    CultOutput_2014 |> select(VDS_ID, PLOT_CODE, SEASON, CROP_1, CROP_2, CROP_3, CROP_4, CROP_1_ID, CROP_2_ID, CROP_3_ID, CROP_4_ID, PRCT_AREA_1, PRCT_AREA_2, PRCT_AREA_3, PRCT_AREA_4,VAR_NAME_1, VAR_NAME_2, VAR_NAME_3, VAR_NAME_4, VAR_TYPE_1, VAR_TYPE_2, VAR_TYPE_3, VAR_TYPE_4),
+    CultOutput_2014 |> select(VDS_ID, PLOT_CODE, SEASON, OP_MAIN_PROD_UNIT, OP_MAIN_PROD_QTY, CROP_1, CROP_2, CROP_3, CROP_4, CROP_1_ID, CROP_2_ID, CROP_3_ID, CROP_4_ID, PRCT_AREA_1, PRCT_AREA_2, PRCT_AREA_3, PRCT_AREA_4,VAR_NAME_1, VAR_NAME_2, VAR_NAME_3, VAR_NAME_4, VAR_TYPE_1, VAR_TYPE_2, VAR_TYPE_3, VAR_TYPE_4),
     by = c("VDS_ID", "PLOT_CODE", "SEASON")
   )
   
