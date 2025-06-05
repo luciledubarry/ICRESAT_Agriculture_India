@@ -290,7 +290,7 @@ Cultivation_cult_distinctes <- Cultivation_cult_distinctes |>
 
 ### Variable Gender
 
-rajouter child / bullocks ? 
+J'intégre le travail fait par les bullocks dans le travail des hommes, puisque cela inclut le conducteur. 
 
 ```{r}
 # Créer la variable GENDER à partir de LAB_TYPE
@@ -298,7 +298,7 @@ Cultivation_cult_distinctes <- Cultivation_cult_distinctes |>
   mutate(
     GENDER = case_when(
       LAB_TYPE %in% c("HF", "FF", "EF") ~ "Female",
-      LAB_TYPE %in% c("HM", "FM", "EM") ~ "Male",
+      LAB_TYPE %in% c("HM", "FM", "EM", "OB", "HB", "EB") ~ "Male",
       LAB_TYPE %in% c("HC", "FC", "EC") ~ "Child",
       TRUE ~ "Other"
     )
@@ -352,6 +352,7 @@ nb_champ <- Cultivation_cult_distinctes |>
 cat("Nombre de lignes incluant le multi-croping :", nrow(nb_multi_croping), "\n")
 cat("Sur un total de", nrow(nb_champ), "lignes soit", round(100 * nrow(nb_multi_croping) / nrow(nb_champ), 1), "%\n")
 ```
+
 ### Variable Human labor
 
 ```{r}
@@ -698,7 +699,7 @@ base_to_join <- Cultivation_cult_distinctes |>
   select(
     VDS_ID, PLOT_CODE, SEASON, CROP, OPERATION,
     MONTH, GENDER, EMPLOYMENT, HUMAN_LABOR, MACHINERY, DT_OPER, SUR_MON_YR,
-    FERTILIZER, LAB_TYPE, WORK_HR, NAME_MAT, TYPE_MAT, MACHINERY
+    FERTILIZER, LAB_TYPE, WORK_HR, OP_MAIN_PROD_UNIT, OP_MAIN_PROD_QTY, NAME_MAT, TYPE_MAT, MACHINERY
   )
 
 # Jointure sans conflit de colonnes
@@ -756,7 +757,7 @@ Dans ce cas, je joindrais Cultivation_cult_distinctes et full_operation2 avec "M
 ```{r}
 Cultivation_expand <- Cultivation_expand |>
   select(
-    SUR_MON_YR, MONTH, SEASON, VDS_ID, PLOT_CODE, AREA_CROP, IRRI_CROP, CROP, DT_OPER, OPERATION, LAB_TYPE, WORK_HR, GENDER, EMPLOYMENT, NAME_MAT, TYPE_MAT, MACHINERY, FERTILIZER, VAR_TYPE, VAR_NAME, CROP_ID, HUMAN_LABOR, MULTI_CROPING, REGION, STATE, VILLAGE, everything()  # place les colonnes restantes à la fin
+    SUR_MON_YR, MONTH, SEASON, VDS_ID, PLOT_CODE, AREA_CROP, IRRI_CROP, CROP, DT_OPER, OPERATION, LAB_TYPE, WORK_HR, GENDER, EMPLOYMENT, NAME_MAT, TYPE_MAT, OP_MAIN_PROD_UNIT, OP_MAIN_PROD_QTY, MACHINERY, FERTILIZER, VAR_TYPE, VAR_NAME, CROP_ID, HUMAN_LABOR, MULTI_CROPING, REGION, STATE, VILLAGE, everything()  # place les colonnes restantes à la fin
   )
 ```
 
