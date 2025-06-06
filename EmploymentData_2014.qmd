@@ -695,10 +695,3 @@ Puis regarder la différence de travail des femmes (selon leur relation) par cas
 3. Regarder selon l'âge et le genre dde chaque personne dans le ménage, sa probabilité à travailler à la ferme familial (heures de travail agricole différent de 0). il faut donc conserver la variable age associée à chaque personne. 
 
 
-
-
-
-
-
-
-
